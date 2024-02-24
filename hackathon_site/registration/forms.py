@@ -174,6 +174,7 @@ class ApplicationForm(forms.ModelForm):
         self.user = kwargs.pop("user")
         super().__init__(*args, **kwargs)
         self.label_suffix = ""
+        self.fields["conduct_agree"].required = True
 
     def clean(self):
         if not is_registration_open():
