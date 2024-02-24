@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 import uuid
 
 from registration.validators import UploadedFileValidator
+from django.core.validators import RegexValidator
 
 User = get_user_model()
 
@@ -47,18 +48,10 @@ class Application(models.Model):
         ("no-answer", "Prefer not to Answer"),
         ("other", "Other"),
     ]
-    HACKATHON_NUMBER_CHOICES = [
-        (None, ""),
-        ("0", "0"),
-        ("1", "1"),
-        ("2", "2"),
-        ("3", "3"),
-        ("4", "4"),
-        ("5 or more", "5 or more"),
-    ]
 
     AGE_CHOICES = [
         (None, ""),
+        ("17", "17"),
         ("18", "18"),
         ("19", "19"),
         ("20", "20"),
@@ -85,7 +78,7 @@ class Application(models.Model):
         ("caucasian", "White / Caucasian"),
         ("other-asian", "Other Asian (Thai, Cambodian, etc)"),
         ("other-pacific-islander", "Other Pacific Islander"),
-        ("other", "Other (Please Specify)"),
+        ("other", "Other (please specify)"),
         ("no-answer", "Prefer not to answer"),
     ]
 
@@ -101,20 +94,26 @@ class Application(models.Model):
 
     STUDY_LEVEL_CHOICES = [
         (None, ""),
-        ("less-highschool", "Less than Secondary/High School"),
-        ("highschool", "Secondary/High School"),
-        (
-            "undergraduate-twoyears",
-            "Undergraduate University (2 year - community college or similar)",
-        ),
-        ("undergraduate-threeyears", "Undergraduate University (3+ year)"),
-        ("gradschool", "Graduate University (Masters, Professional, Doctoral, etc) "),
-        ("postdoctorate", "Post Doctorate"),
-        ("codeschool", "Code School/Bootcamp"),
-        ("other-apprenticeship", "Other Vocational / Trade Program or Apprenticeship"),
-        ("other", "Other (Please Specify)"),
-        ("not-student", "I'm not currently a student"),
-        ("no-answer", "Prefer not to answer"),
+        ("first-year", "First Year"),
+        ("second-year", "Second Year"),
+        ("third-year", "Post Doctorate"),
+        ("pey", "PEY"),
+        ("fourth-year", "Fourth Year"),
+        ("grad-school", "Grad School"),
+    ]
+
+    PROGRAM_CHOICES = [
+        (None, ""),
+        ("chemical-engineering", "Chemical Engineering"),
+        ("civil-engineering", "Civil Engineering"),
+        ("computer-science", "Computer Science"),
+        ("electrical-engineering", "Electrical Engineering"),
+        ("engineering-science", "Engineering Science"),
+        ("industrial-engineering", "Industrial Engineering"),
+        ("materials-engineering", "Materials Engineering"),
+        ("mineral-engineering", "Mineral Engineering"),
+        ("track-one", "TrackOne"),
+        ("other", "Other (please specify)"),
     ]
 
     TSHIRT_SIZE_CHOICES = [
@@ -130,8 +129,12 @@ class Application(models.Model):
         ("none", "None"),
         ("halal", "Halal"),
         ("vegetarian", "Vegetarian"),
+        ("vegan", "Vegan"),
+        ("celiac-disease", "Celiac Disease"),
+        ("allergies", "Allergies"),
+        ("kosher", "Kosher"),
         ("gluten-Free", "Gluten-free"),
-        ("other but specify", "Other but Specify"),
+        ("other-specify", "Other (please specify)")
     ]
 
     YES_NO_UNSURE = [
@@ -146,7 +149,7 @@ class Application(models.Model):
         ("straight", "Heterosexual or straight"),
         ("gay-lesbian", "Gay or lesbian"),
         ("bisexual", "Bisexual"),
-        ("different", "Different Identity (Please Specify"),
+        ("different", "Additional Identity not Listed (Please Specify)"),
         ("no-answer", "Prefer not to answer"),
     ]
 
@@ -160,15 +163,34 @@ class Application(models.Model):
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, null=False)
     pronouns = models.CharField(max_length=50, choices=PRONOUNS_CHOICES, null=False)
     ethnicity = models.CharField(max_length=50, choices=ETHNICITY_CHOICES, null=False)
-    country = models.CharField(max_length=255, null=False)
     dietary_restrictions = models.CharField(
         max_length=50, choices=DIETARY_RESTRICTIONS_CHOICES, null=False
     )
-    tshirt_size = models.CharField(
-        max_length=50, choices=TSHIRT_SIZE_CHOICES, null=False
-    )
+    specific_dietary_requirement = models.CharField(max_length=50, blank=True)
 
-    school = models.CharField(max_length=255, null=False)
+    # Address fields
+    street_address = models.CharField(
+        max_length=255, null=False, help_text="e.g. 35 St George St"
+    )
+    apt_number = models.CharField(
+        max_length=255, null=True, blank=True, help_text="e.g. Apt. No. 13"
+    )
+    country = models.CharField(max_length=255, null=False)
+    city = models.CharField(max_length=255, null=False)
+    region = models.CharField(max_length=255, null=False)
+    postal_code = models.CharField(max_length=6, null=False)
+
+    student_number = models.CharField(
+        max_length=10,
+        validators=[
+            RegexValidator(
+                regex='^\d{10}$',
+                message='UofT Student number must be exactly 10 digits',
+                code='invalid_student_number'
+            )
+        ],
+        help_text="e.g. 1234567890"
+    )
     phone_number = models.CharField(
         max_length=20,
         null=False,
@@ -183,7 +205,7 @@ class Application(models.Model):
         max_length=50, choices=STUDY_LEVEL_CHOICES, null=False
     )
     program = models.CharField(
-        max_length=255, help_text="Program or Major", null=False, default=""
+        max_length=50, choices=PROGRAM_CHOICES, null=False
     )
     graduation_year = models.IntegerField(
         null=False,
@@ -214,32 +236,19 @@ class Application(models.Model):
     devpost = models.URLField(
         max_length=200, help_text="Devpost Profile (Optional)", null=True, blank=True
     )
-    how_many_hackathons = models.TextField(
-        null=False,
-        help_text="How many hackathons have you been to?",
-        choices=HACKATHON_NUMBER_CHOICES,
-        max_length=100,
-    )
-    what_hackathon_experience = models.TextField(
-        null=False,
-        help_text="If you’ve been to a hackathon, briefly tell "
-        "us your experience. If not, describe what you"
-        " expect to see and experience.",
-        max_length=1000,
-    )
     why_participate = models.TextField(
         null=False,
-        help_text="Why do you want to participate in MakeUofT?",
+        help_text="Why do you want to participate in Hack the Student Life?",
         max_length=1000,
     )
     what_technical_experience = models.TextField(
         null=False,
-        help_text="What is your technical experience with software and hardware?",
+        help_text="What is your technical experience with software and AWS?",
         max_length=1000,
     )
     discovery_method = models.TextField(
         null=False,
-        help_text="How did you hear about MakeUofT?",
+        help_text="How did you hear about Hack the Student Life?",
         choices=REFERRAL_CHOICES,
         max_length=100,
     )
@@ -258,39 +267,17 @@ class Application(models.Model):
         max_length=1000,
     )
 
-    conduct_agree = models.BooleanField(
-        help_text="I have read and agree to the "
-        '<a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" rel="noopener noreferrer" target="_blank">MLH code of conduct</a>.',
-        blank=False,
-        null=False,
-        default=False,
-    )
-    logistics_agree = models.BooleanField(
-        help_text="I authorize you to share my application/registration information with Major League Hacking"
-        " for event administration, ranking, and MLH administration in-line with the "
-        '<a href="https://mlh.io/privacy" rel="noopener noreferrer" target="_blank">MLH Privacy Policy</a>. '
-        "I further agree to the terms of both the "
-        '<a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md" rel="noopener noreferrer" target="_blank">MLH Contest Terms and Conditions</a>'
-        " and the "
-        '<a href="https://mlh.io/privacy" rel="noopener noreferrer" target="_blank">MLH Privacy Policy.</a>',
-        blank=False,
-        null=False,
-        default=False,
-    )
-
-    email_agree = models.BooleanField(
-        help_text="I authorize MLH to send me pre- and post-event informational"
-        " emails, which contain free credit and opportunities from their partners.",
-        blank=True,
-        null=True,
-        default=False,
-    )
-
     resume_sharing = models.BooleanField(
         help_text="I consent to IEEE UofT sharing my resume with event sponsors.",
         blank=True,
         null=True,
         default=False,
+    )
+    conduct_agree = models.BooleanField(
+        help_text="I have read and agreed to the "
+        '<a href="https://aws.amazon.com/codeofconduct/" rel="noopener noreferrer" target="_blank">AWS Code of Conduct</a>.',
+        blank=False,
+        null=False,
     )
 
     rsvp = models.BooleanField(null=True)
@@ -298,7 +285,13 @@ class Application(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=False)
 
     def save(self, *args, **kwargs):
+        if (
+            self.dietary_restrictions == "other but specify"
+            or self.dietary_restrictions == "Other but Specify"
+        ):
+            self.dietary_restrictions = self.specific_dietary_requirement
         super().save(*args, **kwargs)
+
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"

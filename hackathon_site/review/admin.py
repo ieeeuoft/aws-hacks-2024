@@ -112,12 +112,10 @@ class ApplicationInline(admin.TabularInline):
         "phone_number",
         "resume",
         "rsvp",
-        "data_agree",
     )
     readonly_fields = (
         "get_user_full_name",
         "study_level",
-        "school",
         "graduation_year",
         "why_participate",
         "what_technical_experience",
@@ -127,8 +125,6 @@ class ApplicationInline(admin.TabularInline):
         "get_reviewer_name",
         "get_decision_sent_date",
         "conduct_agree",
-        "logistics_agree",
-        "email_agree",
         "resume_sharing",
     )
 
