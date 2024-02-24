@@ -151,7 +151,7 @@ class ApplicationForm(forms.ModelForm):
             # 'tshirt_size', Assuming tshirt_size is not in the fields list, add if needed.
         ]
         widgets = {
-            'phone_number': forms.TextInput(attrs={'placeholder': '+1 (123) 456-7890'}),
+            'student_number': forms.TextInput(attrs={'placeholder': '1234567890'}),
             'graduation_year': forms.NumberInput(attrs={'placeholder': 2024}),
             "resume": MaterialFileInput(attrs={"accept": ".pdf"}),
             'why_participate': forms.Textarea(attrs={
