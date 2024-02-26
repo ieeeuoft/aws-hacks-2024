@@ -8,9 +8,9 @@ const Footer = () => {
     const yearRange =
         fakeDate.getFullYear() === 2020 ? "" : " - " + fakeDate.getFullYear();
     const outputMessage =
-        "© 2020" +
+        "© 2024" +
         yearRange +
-        " Built by the web team at MakeUofT (University of Toronto)";
+        " Built by the web team at AWS Hacks (University of Toronto)";
 
     return (
         <Container maxWidth={false} disableGutters={true}>

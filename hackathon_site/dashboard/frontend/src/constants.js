@@ -5,5 +5,5 @@ export const maxTeamSize = 4;
 export const hardwareSignOutStartDate = new Date(2024, 2, 24, 8, 30);
 export const hardwareSignOutEndDate = new Date(2024, 2, 24, 18, 0);
 export const hssTestUserGroup = "HSS Test Users";
-export const serverUrl = "https://makeuoft.ca";
+export const serverUrl = "https://hackstudentlife.ca/";
 export const minProjectDescriptionLength = 60;
