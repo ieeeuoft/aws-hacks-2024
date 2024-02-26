@@ -67,9 +67,7 @@ else:
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", None)
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", None)
     EMAIL_USE_SSL = True
-    DEFAULT_FROM_EMAIL = os.environ.get(
-        "EMAIL_FROM_ADDRESS", "hello@hackstudentlife.ca"
-    )
+    DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_FROM_ADDRESS", "hello@hackstudentlife.ca")
     CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_CREDENTIALS = True
