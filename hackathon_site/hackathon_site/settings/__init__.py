@@ -67,9 +67,7 @@ else:
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", None)
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", None)
     EMAIL_USE_SSL = True
-    DEFAULT_FROM_EMAIL = os.environ.get(
-        "EMAIL_FROM_ADDRESS", "hello@hackstudentlife.ca"
-    )
+    DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_FROM_ADDRESS", "hello@hackstudentlife.ca")
     CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_CREDENTIALS = True
@@ -319,11 +317,10 @@ DEFAULT_FROM_EMAIL = "hello@hackstudentlife.ca"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
 HSS_ADMIN_EMAIL = "hardware@hackstudentlife.ca"
 
-# TODO: CHANGE
-REGISTRATION_OPEN_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
-REGISTRATION_CLOSE_DATE = datetime(2025, 9, 30, tzinfo=TZ_INFO)
-EVENT_START_DATE = datetime(2023, 10, 10, 10, 0, 0, tzinfo=TZ_INFO)
-EVENT_END_DATE = datetime(2023, 10, 11, 17, 0, 0, tzinfo=TZ_INFO)
+REGISTRATION_OPEN_DATE = datetime(2024, 3, 1, tzinfo=TZ_INFO)
+REGISTRATION_CLOSE_DATE = datetime(2024, 3, 8, tzinfo=TZ_INFO)
+EVENT_START_DATE = datetime(2024, 3, 24, 8, 0, 0, tzinfo=TZ_INFO)
+EVENT_END_DATE = datetime(2024, 3, 24, 18, 0, 0, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_START_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 9, 30, tzinfo=TZ_INFO)
 
