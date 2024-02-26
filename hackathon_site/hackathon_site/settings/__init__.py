@@ -22,7 +22,6 @@ from django.urls import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -193,7 +192,7 @@ CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": f"redis://{REDIS_URI}",
-        "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient",},
+        "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient", },
         # Default time for cache key expiry, in seconds. Can be changed on a per-key basis
         "TIMEOUT": 600,
     }
@@ -211,7 +210,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
@@ -220,7 +218,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
     "PAGE_SIZE": 1000,
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend",],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend", ],
 }
 
 # Internationalization
@@ -272,8 +270,8 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "filters": {
-        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse",},
-        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue",},
+        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse", },
+        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue", },
     },
     "handlers": {
         "console": {
@@ -357,6 +355,19 @@ CHAT_ROOM = ("Slack", "https://slack.com")
 # Enable/Disable certain Features
 TEAMS = True
 RSVP = True
+
+SIGN_IN_TIMES = [
+    {
+        "name": "sign_in",
+        "description": "Hackathon Sign In & Breakfast",
+        "time": datetime(2024, 3, 24, 8, 30, 0, tzinfo=TZ_INFO),  # Mar 24th @ 8:30am
+    },
+    {
+        "name": "lunch1",
+        "description": "Lunch",
+        "time": datetime(2024, 3, 24, 12, 0, 0, tzinfo=TZ_INFO),  # Mar 24th @ 12pm
+    },
+]
 
 # HSS Testing
 TEST_USER_GROUP = "HSS Test Users"
