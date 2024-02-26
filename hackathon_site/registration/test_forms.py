@@ -91,18 +91,20 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             "phone_number": "1234567890",
             "country": "canada",
             "dietary_restrictions": "halal",
-            "tshirt_size": "L",
             "underrepresented_community": "no",
             "sexual_orientation": "straight",
-            "school": "UofT",
-            "study_level": "gradschool",
+            "study_level": "first-year",
             "graduation_year": "2025",
-            "program": "computer science",
-            "how_many_hackathons": "2",
-            "what_hackathon_experience": "foo",
+            "program": "computer-engineering",
             "why_participate": "foo",
             "what_technical_experience": "foo",
             "discovery_method": "instagram",
+            "street_address": "Your Street Address Here",
+            "city": "Your City Here",
+            "region": "Your Region Here",
+            "postal_code": "XXXXXX",
+            "student_number": "1234567890",
+            "conduct_agree": True,
         }
         self.files = self._build_files()
 
@@ -132,24 +134,16 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
         return ApplicationForm(user=user, data=data, files=files)
 
     def test_fields_are_required(self):
-        optional_fields = {
-            "linkedin",
-            "github",
-            "devpost",
-            "email_agree",
-            "resume_sharing",
-            "rsvp",
-            "conduct_agree",
-            "logistics_agree",
-        }
         for field in self.data:
-            if field in optional_fields:
-                continue
             bad_data = self.data.copy()
             del bad_data[field]
 
-            form = self._build_form(data=bad_data)
-            self.assertFalse(form.is_valid())
+            form = self._build_form(
+                data=bad_data, files=self.files if "resume" in field else None
+            )
+            self.assertFalse(
+                form.is_valid(), msg=f"Form should not be valid without {field}"
+            )
             self.assertIn(field, form.errors, msg=field)
             self.assertIn("This field is required.", form.errors[field], msg=field)
 

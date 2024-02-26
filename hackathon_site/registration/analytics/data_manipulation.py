@@ -15,7 +15,7 @@ REGISTRATION_OPEN_DATES = {
 
 parent_folder = pathlib.Path(__file__).parent.resolve()
 target_folder = f"{pathlib.Path(__file__).parents[1]}/static/registration/assets"
-analytic_types = ["school", "program", "study_level"]
+analytic_types = ["program", "study_level"]
 
 
 def get_applications_to_date(hackathon: str, year: str):
