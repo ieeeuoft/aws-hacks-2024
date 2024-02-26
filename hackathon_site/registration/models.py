@@ -134,7 +134,7 @@ class Application(models.Model):
         ("allergies", "Allergies"),
         ("kosher", "Kosher"),
         ("gluten-Free", "Gluten-free"),
-        ("other-specify", "Other (please specify)")
+        ("other-specify", "Other (please specify)"),
     ]
 
     YES_NO_UNSURE = [
@@ -184,12 +184,12 @@ class Application(models.Model):
         max_length=10,
         validators=[
             RegexValidator(
-                regex='^\d{10}$',
-                message='UofT Student number must be exactly 10 digits',
-                code='invalid_student_number'
+                regex="^\d{10}$",
+                message="UofT Student number must be exactly 10 digits",
+                code="invalid_student_number",
             )
         ],
-        help_text="e.g. 1234567890"
+        help_text="e.g. 1234567890",
     )
     phone_number = models.CharField(
         max_length=20,
@@ -204,9 +204,7 @@ class Application(models.Model):
     study_level = models.CharField(
         max_length=50, choices=STUDY_LEVEL_CHOICES, null=False
     )
-    program = models.CharField(
-        max_length=50, choices=PROGRAM_CHOICES, null=False
-    )
+    program = models.CharField(max_length=50, choices=PROGRAM_CHOICES, null=False)
     graduation_year = models.IntegerField(
         null=False,
         validators=[
@@ -291,7 +289,6 @@ class Application(models.Model):
         ):
             self.dietary_restrictions = self.specific_dietary_requirement
         super().save(*args, **kwargs)
-
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"

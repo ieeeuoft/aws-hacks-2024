@@ -6,13 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('registration', '0011_alter_application_dietary_restrictions'),
+        ("registration", "0011_alter_application_dietary_restrictions"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='application',
-            name='dietary_restrictions',
-            field=models.CharField(choices=[(None, ''), ('none', 'None'), ('halal', 'Halal'), ('vegetarian', 'Vegetarian'), ('vegan', 'Vegan'), ('celiac-disease', 'Celiac Disease'), ('allergies', 'Allergies'), ('kosher', 'Kosher'), ('gluten-Free', 'Gluten-free')], max_length=50),
+            model_name="application",
+            name="dietary_restrictions",
+            field=models.CharField(
+                choices=[
+                    (None, ""),
+                    ("none", "None"),
+                    ("halal", "Halal"),
+                    ("vegetarian", "Vegetarian"),
+                    ("vegan", "Vegan"),
+                    ("celiac-disease", "Celiac Disease"),
+                    ("allergies", "Allergies"),
+                    ("kosher", "Kosher"),
+                    ("gluten-Free", "Gluten-free"),
+                ],
+                max_length=50,
+            ),
         ),
     ]

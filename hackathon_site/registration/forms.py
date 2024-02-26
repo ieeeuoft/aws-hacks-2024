@@ -120,54 +120,57 @@ class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
         fields = [
-            'age',
-            'gender',
-            'pronouns',
-            'ethnicity',
-            'dietary_restrictions',
-            'specific_dietary_requirement',
-            'street_address',
-            'apt_number',
-            'country',
-            'city',
-            'region',
-            'postal_code',
-            'student_number',
-            'phone_number',
-            'study_level',
-            'program',
-            'graduation_year',
-            'resume',
-            'linkedin',
-            'github',
-            'devpost',
-            'why_participate',
-            'what_technical_experience',
-            'discovery_method',
-            'underrepresented_community',
-            'sexual_orientation',
-            'resume_sharing',
-            'conduct_agree',
+            "age",
+            "gender",
+            "pronouns",
+            "ethnicity",
+            "dietary_restrictions",
+            "specific_dietary_requirement",
+            "street_address",
+            "apt_number",
+            "country",
+            "city",
+            "region",
+            "postal_code",
+            "student_number",
+            "phone_number",
+            "study_level",
+            "program",
+            "graduation_year",
+            "resume",
+            "linkedin",
+            "github",
+            "devpost",
+            "why_participate",
+            "what_technical_experience",
+            "discovery_method",
+            "underrepresented_community",
+            "sexual_orientation",
+            "resume_sharing",
+            "conduct_agree",
             # 'tshirt_size', Assuming tshirt_size is not in the fields list, add if needed.
         ]
         widgets = {
-            'student_number': forms.TextInput(attrs={'placeholder': '1234567890'}),
-            'graduation_year': forms.NumberInput(attrs={'placeholder': 2024}),
+            "student_number": forms.TextInput(attrs={"placeholder": "1234567890"}),
+            "graduation_year": forms.NumberInput(attrs={"placeholder": 2024}),
             "resume": MaterialFileInput(attrs={"accept": ".pdf"}),
-            'why_participate': forms.Textarea(attrs={
-                'class': 'materialize-textarea',
-                'placeholder': 'I want to participate in Hack The Student Life because...',
-                'data-length': 1000,
-            }),
-            'what_technical_experience': forms.Textarea(attrs={
-                'class': 'materialize-textarea',
-                'placeholder': 'My technical experience includes...',
-                'data-length': 1000,
-            }),
+            "why_participate": forms.Textarea(
+                attrs={
+                    "class": "materialize-textarea",
+                    "placeholder": "I want to participate in Hack The Student Life because...",
+                    "data-length": 1000,
+                }
+            ),
+            "what_technical_experience": forms.Textarea(
+                attrs={
+                    "class": "materialize-textarea",
+                    "placeholder": "My technical experience includes...",
+                    "data-length": 1000,
+                }
+            ),
             # Additional widgets can be defined here for other fields as needed.
             "phone_number": forms.TextInput(attrs={"placeholder": "+1 (123) 456-7890"}),
             "graduation_year": forms.NumberInput(attrs={"placeholder": 2024}),
-
         }
 
     def __init__(self, *args, **kwargs):
@@ -190,9 +193,9 @@ class ApplicationForm(forms.ModelForm):
         return cleaned_data
 
     def clean_student_number(self):
-        student_number = self.cleaned_data.get('student_number')
+        student_number = self.cleaned_data.get("student_number")
         if not student_number.isdigit() or len(student_number) != 10:
-            raise forms.ValidationError('Student number must be exactly 10 digits.')
+            raise forms.ValidationError("Student number must be exactly 10 digits.")
         return student_number
 
     # Include any other custom validation methods as necessary.
@@ -203,7 +206,8 @@ class ApplicationForm(forms.ModelForm):
                 _(f"You must be {settings.MINIMUM_AGE} to participate."),
                 code="user_is_too_young_to_participate",
             )
-        return user_age 
+        return user_age
+
     def save(self, commit=True):
         self.instance = super().save(commit=False)
         team = Team.objects.create()
