@@ -38,13 +38,29 @@ class ApplicationResource(resources.ModelResource):
             "user__last_name",
             "user__email",
             "team__team_code",
-            "birthday",
+            "age",
             "gender",
+            "pronouns",
             "ethnicity",
-            "school",
+            "dietary_restrictions",
+            "street_address",
+            "apt_number",
+            "country",
+            "city",
+            "region",
+            "postal_code",
+            "student_number",
+            "phone_number",
             "study_level",
+            "program",
             "graduation_year",
-            "review__status",
+            "why_participate",
+            "what_technical_experience",
+            "discovery_method",
+            "underrepresented_community",
+            "sexual_orientation",
+            "resume_sharing",
+            "conduct_agree",
             "rsvp",
             "created_at",
             "updated_at",
@@ -54,10 +70,9 @@ class ApplicationResource(resources.ModelResource):
             "user__last_name",
             "user__email",
             "team__team_code",
-            "birthday",
+            "age",
             "gender",
             "ethnicity",
-            "school",
             "study_level",
             "graduation_year",
             "review__status",
@@ -72,10 +87,9 @@ class ApplicationResource(resources.ModelResource):
             "last_name",
             "email",
             "team_code",
-            "birthday",
+            "age",
             "gender",
             "ethnicity",
-            "school",
             "study_level",
             "graduation_year",
             "review_status",
@@ -91,14 +105,13 @@ class ApplicationAdmin(ExportMixin, admin.ModelAdmin):
     change_list_template = "application/change_list.html"
     resource_class = ApplicationResource
     autocomplete_fields = ("user", "team")
-    list_display = ("get_full_name", "team", "school")
+    list_display = ("get_full_name", "team")
     search_fields = (
         "user__email",
         "user__first_name",
         "user__last_name",
         "team__team_code",
     )
-    list_filter = ("school",)
 
     def get_full_name(self, obj):
         return f"{obj.user.first_name} {obj.user.last_name}"
