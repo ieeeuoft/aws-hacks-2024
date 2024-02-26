@@ -108,6 +108,7 @@ class Application(models.Model):
         ("civil-engineering", "Civil Engineering"),
         ("computer-science", "Computer Science"),
         ("electrical-engineering", "Electrical Engineering"),
+        ("computer-engineering", "Computer Engineering"),
         ("engineering-science", "Engineering Science"),
         ("industrial-engineering", "Industrial Engineering"),
         ("materials-engineering", "Materials Engineering"),
