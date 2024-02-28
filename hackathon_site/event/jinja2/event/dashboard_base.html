@@ -39,11 +39,9 @@
                             {% if application.rsvp and using_rsvp %}
                                 <h4 class="formH2"><b>Thanks for RSVP'ing!</b> See you at {{ hackathon_name }}!</h4>
                             {% elif application.rsvp is sameas false and using_rsvp %}
-                                <h4 class="formH2"><b>Thanks for letting us know.</b> Hope to see you next year
-                                    at {{ hackathon_name }}</h4>
+                                <h4 class="formH2"><b>Thanks for letting us know.</b> Hope to see you next year at {{ hackathon_name }}</h4>
                             {% else %}
-                                <h4 class="formH2"><b>Congratulations!</b> You've been accepted
-                                    into {{ hackathon_name }}!</h4>
+                                <h4 class="formH2"><b>Congratulations!</b> You've been accepted into {{ hackathon_name }}!</h4>
                             {% endif %}
 
                             {% if using_rsvp %}
@@ -117,16 +115,11 @@
                                     </div>
 
                                 {% elif rsvp_passed and application.rsvp %}
-                                    <p><b>The RSVP deadline has passed. Thanks for confirming your position
-                                        at {{ hackathon_name }}! We look forward to seeing you there. Note that you
-                                        cannot change your RSVP at this time.</b></p>
+                                    <p><b>The RSVP deadline has passed. Thanks for confirming your position at {{ hackathon_name }}! We look forward to seeing you there. Note that you cannot change your RSVP at this time.</b></p>
                                 {% elif rsvp_passed and application.rsvp is sameas false %}
-                                    <p><b>The RSVP deadline has passed. We regret to see that you will not be joining us
-                                        this year at {{ hackathon_name }}. Unfortunately you cannot change your RSVP at
-                                        this time.</b></p>
+                                    <p><b>The RSVP deadline has passed. We regret to see that you will not be joining us this year at {{ hackathon_name }}. Unfortunately you cannot change your RSVP at this time.</b></p>
                                 {% else %}
-                                    <p><b>It appears you haven't RSVPed. Unfortunately the RSVP deadline has passed and
-                                        you cannot change your RSVP at this time.</b></p>
+                                    <p><b>It appears you haven't RSVPed. Unfortunately the RSVP deadline has passed and you cannot change your RSVP at this time.</b></p>
                                 {% endif %}
                             {% endif %}
 
@@ -200,13 +193,8 @@
                                 {% endfor %}
                             </ul>
                             {% if join_team_form %}
-                                <a
-                                        href="{{ url("registration:leave-team") }}"
-                                        class="btn-small waves-effect waves-light colorBtn"
-                                        style="margin-right: auto; margin-top: 15px;"
-                                >
-                                    Leave team
-                                </a>
+                                <a href="{{ url("registration:leave-team") }}" class="btn-small waves-effect waves-light colorBtn"
+                                        style="margin-right: auto; margin-top: 15px;">Leave team</a>
                                 <br/>
                                 <br/>
                                 <h3 class="formH3">Join a different team</h3>
