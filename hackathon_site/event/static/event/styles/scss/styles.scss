@@ -47,7 +47,7 @@ strong {
 }
 
 .ombreBackground {
-    background: linear-gradient(180deg, #37475a 60%, #ff9900 120%);
+    background: linear-gradient(180deg, #37475a 60%, #37475a 120%);
     min-height: 100vh;
 }
 // End of background color change
@@ -124,6 +124,7 @@ strong {
 
 .hoverLink {
     font-weight: 600;
+    color: color(dark);
 
     &:hover {
         text-decoration: underline;
@@ -181,7 +182,7 @@ strong {
 }
 
 .scrolled {
-    background-color: rgba(66, 153, 178, 0.95);
+    background-color: rgba(55, 71, 90, 0.95);
     box-shadow: 2px -5px 8px rgba(0, 0, 0, 0.14), 0 -1px 10px -2px rgba(0, 0, 0, 0.12),
         0 -1px 15px 0 rgba(0, 0, 0, 0.2);
 }
