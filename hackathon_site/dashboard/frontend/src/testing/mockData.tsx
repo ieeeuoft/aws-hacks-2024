@@ -16,9 +16,9 @@ import {
     UserWithoutProfile,
     UserWithReviewStatus,
 } from "api/types";
-import {CartItem} from "api/types";
-import {adminGroup} from "constants.js";
-import {ReturnOrderResponse} from "slices/order/teamOrderSlice";
+import { CartItem } from "api/types";
+import { adminGroup } from "constants.js";
+import { ReturnOrderResponse } from "slices/order/teamOrderSlice";
 
 // For DashCard on Dashboard
 export const cardItems = [
@@ -26,70 +26,59 @@ export const cardItems = [
         title: "Important Links",
         content: [
             {
-                name: "AWS Hacks Main Site",
-                url: "https://hackstudentlife.ca/",
-                icon: <OpenInNew/>,
+                name: "Hackathon main site",
+                url: "https://www.facebook.com",
+                icon: <OpenInNew />,
+            },
+            {
+                name: "Hardware Signout Site",
+                url: "https://hardware.newhacks.ca",
+                icon: <OpenInNew />,
             },
         ],
     },
     {
-        title: "General Electronics aid",
+        title: "General electronics aid",
         content: [
             {
-                name: "Circuit Design App - Circuit.io",
-                url: "https://www.circuito.io/",
-                icon: <OpenInNew/>,
+                name: "Test1 asdajslkd",
+                url: "https://www.youtube.com",
+                icon: <OpenInNew />,
             },
+            { name: "Test2", url: "https://www.youtube.com", icon: <OpenInNew /> },
             {
-                name: "Learn about batteries - Battery University",
-                url: "https://batteryuniversity.com/articles",
-                icon: <OpenInNew/>,
+                name: "Test3 asknd",
+                url: "https://www.youtube.com",
+                icon: <OpenInNew />,
             },
-            {
-                name: "Learn Electronics - SparkFun",
-                url: "https://www.sparkfun.com/",
-                icon: <OpenInNew/>,
-            },
-            {
-                name: "Electronics Tutorials - GreatScott",
-                url: "https://www.youtube.com/user/greatscottlab",
-                icon: <OpenInNew/>,
-            },
-            {
-                name: "Learn Arduino Programming",
-                url: "https://www.halvorsen.blog/documents/technology/resources/resources/Arduino/Programming%20with%20Arduino.pdf",
-                icon: <GetApp/>,
-            },
+            { name: "Test4 blah", url: "https://www.youtube.com", icon: <GetApp /> },
+            { name: "Test5", url: "https://www.youtube.com", icon: <GetApp /> },
         ],
     },
     {
         title: "Stores nearby",
         content: [
             {
-                name: "Canada Computers",
-                url: "https://www.canadacomputers.com/",
-                icon: <PinDrop/>,
-            },
-            {
                 name: "Home Hardware",
-                url: "https://www.homehardware.ca/en/store/16093",
-                icon: <PinDrop/>,
+                url: "https://www.facebook.com",
+                icon: <PinDrop />,
             },
+            { name: "Test2", url: "https://www.facebook.com", icon: <PinDrop /> },
         ],
     },
 ];
 
 // For ItemTable on Dashboard
 export const itemsCheckedOut = [
-    {id: 1, url: "https://i.imgur.com/IO6e5a6.jpg", name: "Arduino", qty: 6},
-    {id: 9, url: "https://i.imgur.com/kOlrXto.jpg", name: "Raspi", qty: 9},
+    { id: 1, url: "https://i.imgur.com/IO6e5a6.jpg", name: "Arduino", qty: 6 },
+    { id: 9, url: "https://i.imgur.com/kOlrXto.jpg", name: "Raspi", qty: 9 },
     {
         id: 4,
         url: "https://i.imgur.com/iUpI1hC.jpg",
         name: "Grove temperature and humidity sensor pro",
         qty: 16,
     },
-    {id: 22, url: "https://i.imgur.com/kOlrXto.jpg", name: "Blah", qty: 7},
+    { id: 22, url: "https://i.imgur.com/kOlrXto.jpg", name: "Blah", qty: 7 },
 ];
 
 export const itemsReturned = [
@@ -169,15 +158,15 @@ export const addCartTest = () => {
 
 // Inventory
 export const mockCategories: Category[] = [
-    {id: 1, name: "MCU", max_per_team: 12, unique_hardware_count: 10},
-    {id: 2, name: "MCU_limit_3", max_per_team: 3, unique_hardware_count: 6},
-    {id: 3, name: "FPGA", max_per_team: 2, unique_hardware_count: 9},
-    {id: 4, name: "Sensors", max_per_team: 12, unique_hardware_count: 21},
-    {id: 5, name: "Sensors_limit_2", max_per_team: 2, unique_hardware_count: 3},
-    {id: 6, name: "Peripherals", max_per_team: 12, unique_hardware_count: 389},
-    {id: 7, name: "1080p_cameras", max_per_team: 4, unique_hardware_count: 4},
-    {id: 8, name: "Grove", max_per_team: 12, unique_hardware_count: 22},
-    {id: 9, name: "Grove_style_boards", max_per_team: 12, unique_hardware_count: 12},
+    { id: 1, name: "MCU", max_per_team: 12, unique_hardware_count: 10 },
+    { id: 2, name: "MCU_limit_3", max_per_team: 3, unique_hardware_count: 6 },
+    { id: 3, name: "FPGA", max_per_team: 2, unique_hardware_count: 9 },
+    { id: 4, name: "Sensors", max_per_team: 12, unique_hardware_count: 21 },
+    { id: 5, name: "Sensors_limit_2", max_per_team: 2, unique_hardware_count: 3 },
+    { id: 6, name: "Peripherals", max_per_team: 12, unique_hardware_count: 389 },
+    { id: 7, name: "1080p_cameras", max_per_team: 4, unique_hardware_count: 4 },
+    { id: 8, name: "Grove", max_per_team: 12, unique_hardware_count: 22 },
+    { id: 9, name: "Grove_style_boards", max_per_team: 12, unique_hardware_count: 12 },
     {
         id: 10,
         name: "Grove_style_modules",
@@ -344,7 +333,6 @@ export const mockTeamMultiple = {
             },
         },
     ],
-    project_description: "",
 };
 
 // Valid Team Size
@@ -598,9 +586,9 @@ export const mockHardware: Hardware[] = [
 ];
 
 export const mockCartItems: CartItem[] = [
-    {hardware_id: 1, quantity: 3},
-    {hardware_id: 2, quantity: 1},
-    {hardware_id: 3, quantity: 2},
+    { hardware_id: 1, quantity: 3 },
+    { hardware_id: 2, quantity: 1 },
+    { hardware_id: 3, quantity: 2 },
 ];
 
 export const mockPendingOrders: Order[] = [
@@ -919,13 +907,11 @@ export const mockCheckedOutOrdersInTable: OrderInTable[] = [
                 id: 1,
                 quantityRequested: 2,
                 quantityGranted: 1,
-
             },
             {
                 id: 2,
                 quantityRequested: 1,
                 quantityGranted: 1,
-
             },
         ],
         status: "Picked Up",

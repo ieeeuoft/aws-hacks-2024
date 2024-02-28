@@ -20,14 +20,10 @@ const HackathonTitle = () => (
     <>
         <Logo
             className={styles.headerLogoImg}
-            alt="AWS Hacks logo"
+            alt="Hackathon logo"
             data-testid="headerLogo"
         />
-        <Typography
-            variant="h6"
-            data-testid="hackathonName"
-            style={{ marginTop: 4, marginLeft: -20 }}
-        >
+        <Typography variant="h6" data-testid="hackathonName">
             {hackathonName}
         </Typography>
     </>

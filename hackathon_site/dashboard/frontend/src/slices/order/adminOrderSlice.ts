@@ -88,7 +88,7 @@ const adminOrderSlice = createSlice({
             state: AdminOrderState,
             { payload }: PayloadAction<OrderFilters>
         ) => {
-            const { status, ordering, search, limit } = {
+            const { status, ordering, search } = {
                 ...state.filters,
                 ...payload,
             };
@@ -98,7 +98,6 @@ const adminOrderSlice = createSlice({
                 ...(status && { status }),
                 ...(ordering && { ordering }),
                 ...(search && { search }),
-                ...(limit && { limit }),
             };
         },
 

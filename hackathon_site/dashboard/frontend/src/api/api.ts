@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-import { serverUrl } from "../constants";
 
 // Re-export the response type, so it's available without needing to import axios
 export type { AxiosResponse } from "axios";
@@ -15,7 +14,7 @@ if (process.env.NODE_ENV === "development") {
 
     SERVER_URL = process.env.REACT_APP_DEV_SERVER_URL?.replace(/\/$/, "");
 } else {
-    SERVER_URL = serverUrl;
+    SERVER_URL = "";
 }
 
 export const getCsrfToken = () => {
@@ -91,4 +90,9 @@ export const post = <T>(uri: string, data?: any): Promise<AxiosResponse<T>> => {
 export const patch = <T>(uri: string, data?: any): Promise<AxiosResponse<T>> => {
     uri = cleanURI(uri);
     return axios.patch(`${SERVER_URL}/${uri}`, data, makeConfig());
+};
+
+export const _delete = <T>(uri: string): Promise<AxiosResponse<T>> => {
+    uri = cleanURI(uri);
+    return axios.delete(`${SERVER_URL}/${uri}`, makeConfig());
 };

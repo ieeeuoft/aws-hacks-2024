@@ -40,7 +40,7 @@ export const teamOrderListSerialization = (
                     (hardwareRequested[hardware.id] = hardware.requested_quantity)
             );
             order.items.forEach(({ id, hardware_id, part_returned_health }) => {
-                if (part_returned_health && part_returned_health !== "Rejected") {
+                if (part_returned_health) {
                     const returnItemKey = `${hardware_id}-${part_returned_health}`;
                     if (returnedItems[returnItemKey])
                         returnedItems[returnItemKey].quantity += 1;
@@ -55,26 +55,14 @@ export const teamOrderListSerialization = (
                         };
                     }
                 } else {
-                    if (
-                        !(
-                            part_returned_health === "Rejected" &&
-                            order.status === "Picked Up"
-                        )
-                    ) {
-                        if (hardwareItems[hardware_id]) {
-                            if (part_returned_health !== "Rejected")
-                                hardwareItems[hardware_id].quantityGranted += 1;
-                            hardwareItems[hardware_id].quantityGrantedBySystem += 1;
-                        } else {
-                            hardwareItems[hardware_id] = {
-                                id: hardware_id,
-                                quantityGranted:
-                                    part_returned_health === "Rejected" ? 0 : 1,
-                                quantityRequested: hardwareRequested[hardware_id],
-                                quantityGrantedBySystem: 1,
-                            };
-                        }
-                    }
+                    if (hardwareItems[hardware_id])
+                        hardwareItems[hardware_id].quantityGranted += 1;
+                    else
+                        hardwareItems[hardware_id] = {
+                            id: hardware_id,
+                            quantityGranted: 1,
+                            quantityRequested: hardwareRequested[hardware_id],
+                        };
                 }
                 hardwareIdsToFetch[hardware_id] = hardware_id;
             });
@@ -84,6 +72,7 @@ export const teamOrderListSerialization = (
                     id: order.id,
                     hardwareInOrder: returnedHardware,
                 });
+
             const hardwareInTableRow = Object.values(hardwareItems);
             if (hardwareInTableRow.length > 0)
                 (order.status === "Submitted" || order.status === "Ready for Pickup"
