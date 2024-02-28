@@ -67,7 +67,7 @@ class SignUpForm(UserCreationForm):
         return self.cleaned_data["email"].lower()
 
     def clean_first_name(self):
-        if not bool(re.search("^[a-zA-Z0-9]*$", self.cleaned_data["first_name"])):
+        if not bool(re.search("^[a-zA-Z0-9\-]*$", self.cleaned_data["first_name"])):
             raise forms.ValidationError(
                 _(
                     f"This doesn't seem like a name, please enter a valid name (no special characters)"

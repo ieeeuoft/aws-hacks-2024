@@ -473,7 +473,6 @@ class DashboardTestCase(SetupUserMixin, TestCase):
             self._review(decision_sent_date=decision_sent_date)
 
             response = self.client.get(self.view)
-
             self.assertContains(response, "It appears you haven't RSVPed.")
             self.assertContains(
                 response,

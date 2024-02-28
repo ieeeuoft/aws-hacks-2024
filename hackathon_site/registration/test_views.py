@@ -198,7 +198,6 @@ class ApplicationViewTestCase(SetupUserMixin, TestCase):
         self.team = Team.objects.create()
 
         self.post_data = self.data.copy()
-        self.post_data["birthday"] = "2000-01-01"  # The format used by the widget
         self.post_data["resume"] = SimpleUploadedFile(
             "my_resume.pdf", b"some content", content_type="application/pdf"
         )

@@ -22,7 +22,6 @@ from django.urls import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -213,7 +212,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
@@ -359,6 +357,19 @@ CHAT_ROOM = ("Slack", "https://slack.com")
 # Enable/Disable certain Features
 TEAMS = True
 RSVP = True
+
+SIGN_IN_TIMES = [
+    {
+        "name": "sign_in",
+        "description": "Hackathon Sign In & Breakfast",
+        "time": datetime(2024, 3, 24, 8, 30, 0, tzinfo=TZ_INFO),  # Mar 24th @ 8:30am
+    },
+    {
+        "name": "lunch1",
+        "description": "Lunch",
+        "time": datetime(2024, 3, 24, 12, 0, 0, tzinfo=TZ_INFO),  # Mar 24th @ 12pm
+    },
+]
 
 # HSS Testing
 TEST_USER_GROUP = "HSS Test Users"
