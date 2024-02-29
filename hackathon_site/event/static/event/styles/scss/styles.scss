@@ -226,6 +226,7 @@ nav ul a {
     animation: bounce 4s infinite;
   }
 
+
   @include responsive(md-down) {
     img,
     object {
@@ -253,7 +254,7 @@ nav ul a {
   background-image: url("../../images/landing-background.svg");
   background-repeat: no-repeat;
   background-size: 100% auto;
-  background-position: center top;
+  background-position: center bottom;
   padding: 100px 0;
   margin-top: -64px;
   color: color(white);
@@ -270,6 +271,10 @@ nav ul a {
 
   h5 {
     font-family: font(header);
+  }
+  
+  @media (max-width: 1320px) {
+      background-position: center top;
   }
 
   @include responsive(md-down) {
