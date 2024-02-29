@@ -253,7 +253,7 @@ nav ul a {
   background-image: url("../../images/landing-background.svg");
   background-repeat: no-repeat;
   background-size: 100% auto;
-  background-position: center bottom;
+  background-position: center top;
   padding: 100px 0;
   margin-top: -64px;
   color: color(white);
@@ -275,6 +275,7 @@ nav ul a {
   @include responsive(md-down) {
     padding: 60px 0 30px;
     background-image: url("../../images/landing-background-mobile.svg");
+    background-position: center top;
     h1 {
       font-size: 50px;
     }
@@ -284,8 +285,6 @@ nav ul a {
   }
 
   @include responsive(sm-down) {
-    padding: 0 0 10px;
-    margin-top: -56px;
     text-align: center;
     h1 {
       font-size: 40px;
