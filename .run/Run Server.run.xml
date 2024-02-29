@@ -1,0 +1,38 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run Server" type="Python.DjangoServer" factoryName="Django server">
+    <module name="aws-hacks-2024" />
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="PARENT_ENVS" value="true" />
+    <envs>
+      <env name="DB_HOST" value="127.0.0.1" />
+      <env name="DB_NAME" value="hackathon_site" />
+      <env name="DB_PASSWORD" value="" />
+      <env name="DB_PORT" value="5433" />
+      <env name="DB_USER" value="postgres" />
+      <env name="DEBUG" value="1" />
+      <env name="DJANGO_SETTINGS_MODULE" value="hackathon_site.settings" />
+      <env name="PYTHONUNBUFFERED" value="1" />
+      <env name="REACT_APP_DEV_SERVER_URL" value="http://localhost:8000" />
+      <env name="RECAPTCHA_PRIVATE_KEY" value="1111" />
+      <env name="RECAPTCHA_PUBLIC_KEY" value="1111" />
+      <env name="REDIS_URI" value="172.17.0.1:6379/1" />
+      <env name="SECRET_KEY" value="1111" />
+    </envs>
+    <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+    <option name="SDK_NAME" value="Python 3.9 (aws-hacks-2024)" />
+    <option name="WORKING_DIRECTORY" value="" />
+    <option name="IS_MODULE_SDK" value="false" />
+    <option name="ADD_CONTENT_ROOTS" value="true" />
+    <option name="ADD_SOURCE_ROOTS" value="true" />
+    <option name="launchJavascriptDebuger" value="false" />
+    <option name="port" value="8000" />
+    <option name="host" value="" />
+    <option name="additionalOptions" value="" />
+    <option name="browserUrl" value="" />
+    <option name="runTestServer" value="false" />
+    <option name="runNoReload" value="false" />
+    <option name="useCustomRunCommand" value="false" />
+    <option name="customRunCommand" value="" />
+    <method v="2" />
+  </configuration>
+</component>
