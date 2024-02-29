@@ -154,7 +154,8 @@ strong {
 // Navbar stuff
 .logoNav {
   height: 100%;
-  padding: 5px 0;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 .logoNavSide {
@@ -225,6 +226,7 @@ nav ul a {
     animation: bounce 4s infinite;
   }
 
+
   @include responsive(md-down) {
     img,
     object {
@@ -259,6 +261,7 @@ nav ul a {
 
   h1 {
     font-weight: 600;
+    font-size: xxx-large;
   }
 
   h4,
@@ -269,10 +272,15 @@ nav ul a {
   h5 {
     font-family: font(header);
   }
+  
+  @media (max-width: 1320px) {
+      background-position: center top;
+  }
 
   @include responsive(md-down) {
     padding: 60px 0 30px;
     background-image: url("../../images/landing-background-mobile.svg");
+    background-position: center top;
     h1 {
       font-size: 50px;
     }
@@ -282,8 +290,6 @@ nav ul a {
   }
 
   @include responsive(sm-down) {
-    padding: 0 0 10px;
-    margin-top: -56px;
     text-align: center;
     h1 {
       font-size: 40px;
