@@ -610,7 +610,7 @@ class LogInViewTestCase(SetupUserMixin, TestCase):
 
     def test_submit_login_invalid_credentials(self):
         response = self.client.post(
-            self.view, {"username": "fake@email.com", "password": "abc123"}
+            self.view, {"username": "fake@mail.utoronto.ca", "password": "abc123"}
         )
         self.assertContains(response, "Please enter a correct username and password")
 
