@@ -229,37 +229,24 @@
                     <h2 class="formH2" id="faq">Application FAQs</h2>
 
                     <p class="faqQuestion">When can I expect to hear back?</p>
-                    <p class="faqAnswer">Decisions will be sent out in 2 rounds, tentatively scheduled for March XX and
-                        XX.</p>
+                    <p class="faqAnswer">Decisions will be sent out in 2 rounds, with the first round on March 10th, and a second round on March 17th for those who are waitlisted.</p>
 
                     <p class="faqQuestion">Can I compete with a different team than the one I applied with?</p>
-                    <p class="faqAnswer">Your team number is just for your application so we can review your team
-                        together. It is not deciding and not needed during the event. You have until the event to choose
-                        a team and must submit to Devpost with the final team.</p>
+                    <p class="faqAnswer">You <strong>cannot</strong> compete with a different team than the one you applied for since we accept applications based on teams. If a situation arises where a member cannot attend, please inform us, and we will address each situation individually.</p>
 
                     {% if using_teams %}
                         <p class="faqQuestion">I don’t have a team. What can I do?</p>
-                        <p class="faqAnswer">All teams competing must have 3 or 4 members, but you do not need a full
-                            team in order to apply. We have a channel on {{ chat_room_name }} dedicated to team
-                            formation as well as an event scheduled before hacking starts at the event.</p>
+                        <p class="faqAnswer">If you do not have a team, you can join our discord and search for teammates in the hackthestudentlife channel. All teams must apply in teams of 4.</p>
 
                         <p class="faqQuestion">Are decisions unanimous for a team?</p>
-                        <p class="faqAnswer">Due to the large number of applicants and limited number of spots
-                            for {{ hackathon_name }}, decisions may not be unanimous. Each member should expect an email
-                            regarding their individual decisions.</p>
+                        <p class="faqAnswer">Decisions are made unanimously, meaning either your entire team is accepted, or none are admitted.</p>
                     {% endif %}
 
                     <p class="faqQuestion">Who can I contact if I’ll be late?</p>
-                    <p class="faqAnswer">Please send an email to <a href="mailto:{{ contact_email }}"
-                                                                    class="primaryText hoverLink">{{ contact_email }}</a>
-                        with your name, email you used to apply, expected arrival time, and reason as to why you’re
-                        arriving late and we’ll save your spot for you.</p>
+                    <p class="faqAnswer">Arriving late is acceptable, but please try to limit your delay to no more than 1-2 hours.</p>
 
                     <p class="faqQuestion">How does the waitlist work the day of?</p>
-                    <p class="faqAnswer">The rank on the waitlist is first-come first serve, meaning the sooner you
-                        arrive at the event on {{ waitlisted_acceptance_start_time.strftime("%A") }}, the higher your
-                        placement on our waitlist. At {{ waitlisted_acceptance_start_time.strftime("%-I:%M %p") }}, if
-                        we have any spots remaining, we will be letting waitlisted people in.</p>
+                    <p class="faqAnswer">If you have a team of 4 and show up on the day of the event, you will be placed on a walk-in waitlist. Should there be available space due to a no-show team, we will let you in. Admission from the waitlist operates on a first-come, first-served basis, so it's important to reach out to one of the IEEE organizers right away.</p>
 
                     <p class="faqQuestion">Other questions?</p>
                     <p class="faqAnswer">If you have any questions or concerns, feel free to contact us at <a
