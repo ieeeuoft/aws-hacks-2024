@@ -43,7 +43,7 @@ class SignUpViewTestCase(SetupUserMixin, TestCase):
 
     def test_valid_submit_redirect(self):
         data = {
-            "email": "testuser@email.com",
+            "email": "testuser@mail.utoronto.ca",
             "first_name": "Foo",
             "last_name": "Bar",
             "password1": "abcdef456",
@@ -57,7 +57,7 @@ class SignUpViewTestCase(SetupUserMixin, TestCase):
 
     def test_lowercases_username(self):
         data = {
-            "email": "Testuser@email.com",
+            "email": "Testuser@mail.utoronto.ca",
             "first_name": "Foo",
             "last_name": "Bar",
             "password1": "abcdef456",
@@ -67,7 +67,7 @@ class SignUpViewTestCase(SetupUserMixin, TestCase):
         self.client.post(self.view, data)
         self.assertTrue(
             User.objects.filter(
-                username="testuser@email.com", email="testuser@email.com"
+                username="testuser@mail.utoronto.ca", email="testuser@mail.utoronto.ca"
             ).exists()
         )
 

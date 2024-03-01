@@ -65,7 +65,7 @@ class SignUpFormTestCase(TestCase):
 
     def test_sets_username_to_email(self):
         data = {
-            "email": "foo@bar.com",
+            "email": "foo@mail.utoronto.ca",
             "first_name": "Foo",
             "last_name": "Bar",
             "password1": "abcdef456",
