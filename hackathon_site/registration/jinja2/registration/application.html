@@ -47,6 +47,7 @@
     <div class="row">
         {{ render_field(form.ethnicity, size="s12 m6 select2-wrapper") }}
         {{ render_field(form.dietary_restrictions, size="s12 m6 select2-wrapper") }}
+        {{ render_field(form.specific_dietary_requirement, size="s12 m6", id="dietaryOther") }}
     </div>
 
     <div class="col s12">
@@ -66,7 +67,7 @@
     </div>
     {{ render_field(form.program, size="s12 m6 select2-wrapper", show_help_text_as_label=False) }}
     {{ render_field(form.study_level, size="s12 m6 select2-wrapper", show_help_text_as_label=False) }}
-    {{ render_field(form.student_number, size="s12 m6 select2-wrapper", show_help_text_as_label=False) }}
+    {{ render_field(form.student_number, size="s12 m6 select2-wrapper", show_help_text_as_label=True) }}
     {{ render_field(form.graduation_year, size="s12 m6 select2-wrapper", show_help_text_as_label=False) }}
     {{ render_field(form.resume, size="s12 marginTop0 select2-wrapper", show_label=False) }}
     {{ render_field(form.linkedin, size="s12 m6 select2-wrapper", show_help_text_as_label=True) }}
@@ -144,12 +145,12 @@
 
             $(document).ready(() => {
                 // check the initial value of the "id_dietary_restrictions" element
-                if ($("#id_dietary_restrictions").val() !== "other but specify") {
+                if ($("#id_dietary_restrictions").val() !== "other-specify") {
                     $("#dietaryOther").hide();
                 }
 
                 $("#id_dietary_restrictions").change((e) => {
-                    if (e.target.value === "other but specify") {
+                    if (e.target.value === "other-specify") {
                         $("#dietaryOther").show();
                     } else {
                         $("#dietaryOther").hide();
