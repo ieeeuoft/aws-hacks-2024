@@ -6,7 +6,7 @@ A website template for hackathons run by [IEEE University of Toronto Student Bra
 #### Directors
 - Mustafa Abdulrahman
 -  Thomas Lin
-
+ 
 #### Associates
 - Karandeep Lubana
 - Carmen Chau
