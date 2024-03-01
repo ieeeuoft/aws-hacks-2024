@@ -35,7 +35,7 @@ class SignUpForm(UserCreationForm):
             "password2",
         ]
         labels = {
-            User.get_email_field_name(): _("Email"),
+            User.get_email_field_name(): _("UofT Email"),
             "first_name": _("First Name"),
             "last_name": _("Last Name"),
             "password1": _("Password"),
@@ -64,7 +64,13 @@ class SignUpForm(UserCreationForm):
             self.fields[field].required = True
 
     def clean_email(self):
-        return self.cleaned_data["email"].lower()
+        cleaned_email = self.cleaned_data["email"].lower()
+        if not cleaned_email.endswith("@mail.utoronto.ca"):
+            raise forms.ValidationError(
+                _("You must use your UofT email address to register."),
+                code="invalid_email",
+            )
+        return cleaned_email
 
     def clean_first_name(self):
         if not bool(re.search("^[a-zA-Z0-9\-]*$", self.cleaned_data["first_name"])):
