@@ -78,7 +78,7 @@ class Application(models.Model):
         ("caucasian", "White / Caucasian"),
         ("other-asian", "Other Asian (Thai, Cambodian, etc)"),
         ("other-pacific-islander", "Other Pacific Islander"),
-        ("other", "Other (please specify)"),
+        ("other", "Other"),
         ("no-answer", "Prefer not to answer"),
     ]
 
@@ -114,7 +114,6 @@ class Application(models.Model):
         ("materials-engineering", "Materials Engineering"),
         ("mineral-engineering", "Mineral Engineering"),
         ("track-one", "TrackOne"),
-        ("other", "Other (please specify)"),
     ]
 
     TSHIRT_SIZE_CHOICES = [
@@ -150,7 +149,7 @@ class Application(models.Model):
         ("straight", "Heterosexual or straight"),
         ("gay-lesbian", "Gay or lesbian"),
         ("bisexual", "Bisexual"),
-        ("different", "Additional Identity not Listed (Please Specify)"),
+        ("different", "Additional Identity not Listed"),
         ("no-answer", "Prefer not to answer"),
     ]
 
