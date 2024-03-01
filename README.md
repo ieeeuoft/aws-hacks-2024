@@ -5,7 +5,7 @@ A website template for hackathons run by [IEEE University of Toronto Student Bra
 ## IEEE Web Team 2023-2024
 #### Directors
 - Thomas Lin
-- Mustafa Abdulrahman (PM)
+- Mustafa Abdulrahman
 
 #### Associates
 - Karandeep Lubana
