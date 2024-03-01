@@ -96,7 +96,7 @@ class Application(models.Model):
         (None, ""),
         ("first-year", "First Year"),
         ("second-year", "Second Year"),
-        ("third-year", "Post Doctorate"),
+        ("third-year", "Third Year"),
         ("pey", "PEY"),
         ("fourth-year", "Fourth Year"),
         ("grad-school", "Grad School"),
@@ -174,15 +174,16 @@ class Application(models.Model):
         max_length=255, null=False, help_text="e.g. 35 St George St"
     )
     apt_number = models.CharField(
-        max_length=255, null=True, blank=True, help_text="e.g. Apt. No. 13"
+        max_length=255, null=True, blank=True, help_text="Apt number (Optional)"
     )
     country = models.CharField(max_length=255, null=False)
     city = models.CharField(max_length=255, null=False)
-    region = models.CharField(max_length=255, null=False)
+    region = models.CharField(max_length=255, null=False, help_text="Region/Province")
     postal_code = models.CharField(max_length=6, null=False)
 
     student_number = models.CharField(
         max_length=10,
+        help_text="UofT Student Number",
         validators=[
             RegexValidator(
                 regex="^\d{10}$",
@@ -190,7 +191,6 @@ class Application(models.Model):
                 code="invalid_student_number",
             )
         ],
-        help_text="e.g. 1234567890",
     )
     phone_number = models.CharField(
         max_length=20,

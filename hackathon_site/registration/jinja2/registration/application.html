@@ -54,10 +54,10 @@
         <p>Providing your address is mandatory to participate in AWS hackathons.</p>
         <br />
     </div>
-    {{ render_field(form.street_address, size="s12 m6", show_help_text=True) }}
-    {{ render_field(form.apt_number, size="s12 m6", show_help_text=True) }}
+    {{ render_field(form.street_address, size="s12 m6", show_help_text=False) }}
+    {{ render_field(form.apt_number, size="s12 m6", show_help_text_as_label=True) }}
     {{ render_field(form.city, size="s12 m6") }}
-    {{ render_field(form.region, size="s12 m6") }}
+    {{ render_field(form.region, size="s12 m6", show_help_text_as_label=True) }}
     {{ render_field(form.country, size="s12 m6") }}
     {{ render_field(form.postal_code, size="s12 m6") }}
 
