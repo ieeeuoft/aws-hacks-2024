@@ -450,6 +450,15 @@ nav ul a {
     padding: 0 20px;
     max-width: 600px;
   }
+
+  @include responsive(sm-down) {
+    margin-top: 0;
+    flex-direction: column;
+  }
+  img {
+    max-width: 220px;
+    padding: 20px;
+  }
 }
 
 // End of "Sponsors" section
