@@ -111,6 +111,7 @@ class Application(models.Model):
         ("computer-engineering", "Computer Engineering"),
         ("engineering-science", "Engineering Science"),
         ("industrial-engineering", "Industrial Engineering"),
+        ("mechanical-engineering", "Mechanical Engineering"),
         ("materials-engineering", "Materials Engineering"),
         ("mineral-engineering", "Mineral Engineering"),
         ("track-one", "TrackOne"),
