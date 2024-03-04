@@ -207,6 +207,9 @@ class ApplicationForm(forms.ModelForm):
     # Include any other custom validation methods as necessary.
     def clean_age(self):
         user_age = self.cleaned_data["age"]
+        # Check if the age is "22+"
+        if user_age == "22+":
+            return user_age
         if int(user_age) < settings.MINIMUM_AGE:
             raise forms.ValidationError(
                 _(f"You must be {settings.MINIMUM_AGE} to participate."),
