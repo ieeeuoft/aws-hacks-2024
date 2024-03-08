@@ -115,6 +115,7 @@ class Application(models.Model):
         ("materials-engineering", "Materials Engineering"),
         ("mineral-engineering", "Mineral Engineering"),
         ("track-one", "TrackOne"),
+        ("other", "Other"),
     ]
 
     TSHIRT_SIZE_CHOICES = [
