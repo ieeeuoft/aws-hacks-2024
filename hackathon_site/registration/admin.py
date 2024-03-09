@@ -1,8 +1,10 @@
 import json
 
 from django.contrib import admin
+from django.db.models import Count, Max
 from import_export import resources
 from import_export.admin import ExportMixin
+
 
 from hackathon_site import settings
 from registration.models import Application, Team as TeamApplied
@@ -20,13 +22,22 @@ class TeamAppliedAdmin(admin.ModelAdmin):
     list_display = ("team_code", "get_members_count")
     inlines = (ApplicationInline,)
 
+    def get_queryset(self, request):
+        return (
+            super()
+            .get_queryset(request)
+            .prefetch_related(
+                "applications", "applications__review", "applications__user"
+            )
+            .annotate(members_count=Count("applications", distinct=True))
+            .annotate(most_recent_submission=Max("applications__updated_at"))
+        )
+
     def get_members_count(self, obj):
-        return obj.applications.count()
+        return obj.members_count
 
     get_members_count.short_description = "Members"
-
-    def get_queryset(self, request):
-        return super().get_queryset(request).prefetch_related("applications")
+    get_members_count.admin_order_field = "members_count"
 
 
 class ApplicationResource(resources.ModelResource):
