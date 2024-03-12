@@ -330,7 +330,7 @@ MINIMUM_AGE = 18
 
 # Registration settings
 ACCOUNT_ACTIVATION_DAYS = 7
-RSVP_DAYS = 7
+RSVP_DAYS = 4
 
 # Team requirements
 MIN_MEMBERS = 2
@@ -353,7 +353,7 @@ PARTICIPANT_PACKAGE_LINK = "#"
 # Chat room name is such as the following: Slack, Discord
 
 # TODO: CHANGE
-CHAT_ROOM = ("Slack", "https://slack.com")
+CHAT_ROOM = ("Discord", "https://discord.gg/7eW9PWDR")
 
 # Enable/Disable certain Features
 TEAMS = True
