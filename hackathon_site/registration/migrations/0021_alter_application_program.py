@@ -6,13 +6,30 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('registration', '0020_alter_application_program'),
+        ("registration", "0020_alter_application_program"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='application',
-            name='program',
-            field=models.CharField(choices=[(None, ''), ('chemical-engineering', 'Chemical Engineering'), ('civil-engineering', 'Civil Engineering'), ('computer-science', 'Computer Science'), ('electrical-engineering', 'Electrical Engineering'), ('computer-engineering', 'Computer Engineering'), ('engineering-science', 'Engineering Science'), ('industrial-engineering', 'Industrial Engineering'), ('mechanical-engineering', 'Mechanical Engineering'), ('materials-engineering', 'Materials Engineering'), ('mineral-engineering', 'Mineral Engineering'), ('track-one', 'TrackOne'), ('other', 'Other')], max_length=50),
+            model_name="application",
+            name="program",
+            field=models.CharField(
+                choices=[
+                    (None, ""),
+                    ("chemical-engineering", "Chemical Engineering"),
+                    ("civil-engineering", "Civil Engineering"),
+                    ("computer-science", "Computer Science"),
+                    ("electrical-engineering", "Electrical Engineering"),
+                    ("computer-engineering", "Computer Engineering"),
+                    ("engineering-science", "Engineering Science"),
+                    ("industrial-engineering", "Industrial Engineering"),
+                    ("mechanical-engineering", "Mechanical Engineering"),
+                    ("materials-engineering", "Materials Engineering"),
+                    ("mineral-engineering", "Mineral Engineering"),
+                    ("track-one", "TrackOne"),
+                    ("other", "Other"),
+                ],
+                max_length=50,
+            ),
         ),
     ]

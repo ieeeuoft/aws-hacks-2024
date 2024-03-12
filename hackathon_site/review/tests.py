@@ -232,7 +232,7 @@ class MailerTestCase(SetupUserMixin, TestCase):
             mail.outbox[0].subject,
         )
         self.assertIn(
-            f"The AWS Hacks team has reviewed your application, and we’re excited to welcome you to AWS Hacks - {settings.HACKATHON_NAME}!",
+            f"The Hack The Student Life Team has reviewed your application, and we’re excited to welcome you to AWS Hacks - Hack The Student Life!",
             re.sub("\s+", " ", clean_mail_body),
         )
 
