@@ -347,7 +347,7 @@ FINAL_REVIEW_RESPONSE_DATE = REGISTRATION_CLOSE_DATE + timedelta(days=7)
 # Links
 
 # TODO: CHANGE
-PARTICIPANT_PACKAGE_LINK = "https://hackstudentlife.ca//static/event/AWS-HSL%20Participant%20Package.pdf/"
+PARTICIPANT_PACKAGE_LINK = "https://hackstudentlife.ca/static/event/AWS-HSL%20Participant%20Package.pdf"
 
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
