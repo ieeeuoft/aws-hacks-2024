@@ -347,7 +347,9 @@ FINAL_REVIEW_RESPONSE_DATE = REGISTRATION_CLOSE_DATE + timedelta(days=7)
 # Links
 
 # TODO: CHANGE
-PARTICIPANT_PACKAGE_LINK = "https://hackstudentlife.ca/static/event/AWS-HSL%20Participant%20Package.pdf"
+PARTICIPANT_PACKAGE_LINK = (
+    "https://hackstudentlife.ca/static/event/AWS-HSL%20Participant%20Package.pdf"
+)
 
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
@@ -363,7 +365,7 @@ SIGN_IN_TIMES = [
     {
         "name": "sign_in",
         "description": "Hackathon Sign In & Breakfast",
-        "time": datetime(2024, 3, 22, 8, 30, 0, tzinfo=TZ_INFO),  # Mar 22nd @ 8:30am
+        "time": datetime(2024, 3, 22, 0, 30, 0, tzinfo=TZ_INFO),  # Mar 22nd @ 8:30am
     },
     {
         "name": "lunch1",

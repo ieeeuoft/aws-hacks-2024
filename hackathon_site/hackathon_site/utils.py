@@ -49,7 +49,7 @@ def get_curr_sign_in_time(use_description=False, return_exception=False):
 # assumes interval won't overlap between different months or years
 def get_sign_in_interval(time):
     start_interval = time - relativedelta(hours=1)
-    end_interval = time + relativedelta(hours=2)
+    end_interval = time + relativedelta(hours=5)
 
     if start_interval.day == end_interval.day:
         return f"{start_interval.strftime('%H:%M')} - {end_interval.strftime('%H:%M')}, {start_interval.strftime('%b %d')}"
