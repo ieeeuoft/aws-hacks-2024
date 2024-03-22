@@ -320,7 +320,7 @@ HSS_ADMIN_EMAIL = "hardware@hackstudentlife.ca"
 
 REGISTRATION_OPEN_DATE = datetime(2024, 3, 1, tzinfo=TZ_INFO)
 REGISTRATION_CLOSE_DATE = datetime(2024, 3, 8, 23, 59, 0, tzinfo=TZ_INFO)
-EVENT_START_DATE = datetime(2024, 3, 22, 0, 0, 0, tzinfo=TZ_INFO)
+EVENT_START_DATE = datetime(2024, 3, 22, 7, 30, 0, tzinfo=TZ_INFO)
 EVENT_END_DATE = datetime(2024, 3, 22, 18, 0, 0, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_START_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 9, 30, tzinfo=TZ_INFO)
@@ -365,7 +365,7 @@ SIGN_IN_TIMES = [
     {
         "name": "sign_in",
         "description": "Hackathon Sign In & Breakfast",
-        "time": datetime(2024, 3, 22, 0, 30, 0, tzinfo=TZ_INFO),  # Mar 22nd @ 8:30am
+        "time": datetime(2024, 3, 22, 8, 30, 0, tzinfo=TZ_INFO),  # Mar 22nd @ 8:30am
     },
     {
         "name": "lunch1",
