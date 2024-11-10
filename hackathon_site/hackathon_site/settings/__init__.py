@@ -22,7 +22,6 @@ from django.urls import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -44,11 +43,31 @@ if DEBUG:
     HSS_URL = "http://localhost:3000/"
 else:
     # NOTE: If you aren't ieee uoft, put your websites here
-    ALLOWED_HOSTS = ["ieee.utoronto.ca"]
-    CORS_ORIGIN_REGEX_WHITELIST = [
-        r"^https://ieee\.utoronto.ca:?\d*$",
+    ALLOWED_HOSTS = [
+        "hackstudentlife.ca",
+        "www.hackstudentlife.ca",
+        "hardware.hackstudentlife.ca",
+        "www.hardware.hackstudentlife.ca",
     ]
-    HSS_URL = "https://hardware.newhacks.ca/"
+    CORS_ORIGIN_REGEX_WHITELIST = [
+        r"^https://(?:www\.)?hackstudentlife\.ca",
+        r"^https://(?:www\.)?\w+\.hackstudentlife\.ca",
+    ]
+    HSS_URL = "https://hardware.hackstudentlife.ca/"
+    CSRF_COOKIE_DOMAIN = ".hackstudentlife.ca"
+    CSRF_TRUSTED_ORIGINS = [
+        "hackstudentlife.ca",
+        "www.hackstudentlife.ca",
+        "hardware.hackstudentlife.ca",
+        "www.hardware.hackstudentlife.ca",
+    ]
+    EMAIL_HOST = os.environ.get("EMAIL_HOST", None)
+    EMAIL_PORT = os.environ.get("EMAIL_PORT", None)
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", None)
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", None)
+    EMAIL_USE_SSL = True
+    DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_FROM_ADDRESS", "hello@hackstudentlife.ca")
+    CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -92,6 +111,7 @@ INSTALLED_APPS = [
     "django_filters",
     "client_side_image_cropping",
     "captcha",
+    "qrcode",
     "dashboard",
     "registration",
     "event",
@@ -146,6 +166,7 @@ LOGIN_URL = reverse_lazy("event:login")
 LOGIN_REDIRECT_URL = reverse_lazy("event:dashboard")
 LOGOUT_REDIRECT_URL = reverse_lazy("event:index")
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -158,6 +179,7 @@ DATABASES = {
         "PASSWORD": os.environ.get("DB_PASSWORD", ""),
         "HOST": os.environ.get("DB_HOST", "127.0.0.1"),
         "PORT": os.environ.get("DB_PORT", "5432"),
+        "ATOMIC_REQUESTS": True,
     }
 }
 
@@ -170,7 +192,7 @@ CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": f"redis://{REDIS_URI}",
-        "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient",},
+        "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient", },
         # Default time for cache key expiry, in seconds. Can be changed on a per-key basis
         "TIMEOUT": 600,
     }
@@ -188,7 +210,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
@@ -196,8 +217,8 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
-    "PAGE_SIZE": 100,
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend",],
+    "PAGE_SIZE": 1000,
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend", ],
 }
 
 # Internationalization
@@ -249,8 +270,8 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "filters": {
-        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse",},
-        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue",},
+        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse", },
+        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue", },
     },
     "handlers": {
         "console": {
@@ -289,11 +310,12 @@ LOGGING = {
 }
 
 # Event specific settings
-HACKATHON_NAME = "CoolHacks"
-DEFAULT_FROM_EMAIL = "webmaster@localhost"
+HACKATHON_NAME = "Hack The Student Life"
+DEFAULT_FROM_EMAIL = "hello@hackstudentlife.ca"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
-HSS_ADMIN_EMAIL = "hardware@newhacks.ca"
+HSS_ADMIN_EMAIL = "hardware@hackstudentlife.ca"
 
+# TODO: CHANGE
 REGISTRATION_OPEN_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
 REGISTRATION_CLOSE_DATE = datetime(2023, 9, 30, tzinfo=TZ_INFO)
 EVENT_START_DATE = datetime(2023, 10, 10, 10, 0, 0, tzinfo=TZ_INFO)
@@ -302,13 +324,14 @@ HARDWARE_SIGN_OUT_START_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 9, 30, tzinfo=TZ_INFO)
 
 # Registration user requirements
-MINIMUM_AGE = 14
+MINIMUM_AGE = 18
 
 # Registration settings
 ACCOUNT_ACTIVATION_DAYS = 7
 RSVP_DAYS = 7
 
 # Team requirements
+# TODO: Double check
 MIN_MEMBERS = 2
 MAX_MEMBERS = 4
 
@@ -321,10 +344,14 @@ WAITLISTED_ACCEPTANCE_START_TIME = EVENT_START_DATE + timedelta(hours=1)
 FINAL_REVIEW_RESPONSE_DATE = REGISTRATION_CLOSE_DATE + timedelta(days=7)
 
 # Links
+
+# TODO: CHANGE
 PARTICIPANT_PACKAGE_LINK = "#"
 
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
+
+# TODO: CHANGE
 CHAT_ROOM = ("Slack", "https://slack.com")
 
 # Enable/Disable certain Features
