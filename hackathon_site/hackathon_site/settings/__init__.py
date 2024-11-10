@@ -66,7 +66,9 @@ else:
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", None)
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", None)
     EMAIL_USE_SSL = True
-    DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_FROM_ADDRESS", "hello@hackstudentlife.ca")
+    DEFAULT_FROM_EMAIL = os.environ.get(
+        "EMAIL_FROM_ADDRESS", "hello@hackstudentlife.ca"
+    )
     CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_CREDENTIALS = True
@@ -192,7 +194,7 @@ CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": f"redis://{REDIS_URI}",
-        "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient", },
+        "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient",},
         # Default time for cache key expiry, in seconds. Can be changed on a per-key basis
         "TIMEOUT": 600,
     }
@@ -218,7 +220,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
     "PAGE_SIZE": 1000,
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend", ],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend",],
 }
 
 # Internationalization
@@ -270,8 +272,8 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "filters": {
-        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse", },
-        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue", },
+        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse",},
+        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue",},
     },
     "handlers": {
         "console": {
