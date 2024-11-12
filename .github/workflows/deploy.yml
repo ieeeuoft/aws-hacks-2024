@@ -104,7 +104,7 @@ jobs:
           overwrite: true
           # scp-action doesn't obey working-directory, runs at repo root
           source: "hackathon_site/static/"
-          target: "/usr/src/${{ env.IMAGE_NAME }}"
+          target: "/usr/src/ieeeuoft/aws-hacks-2024"
           strip_components: 1
       - name: Set up SSH
         run: |
@@ -121,7 +121,7 @@ jobs:
           overwrite: true
           # scp-action doesn't obey working-directory, runs at repo root
           source: "hackathon_site/dashboard/frontend/build/"
-          target: "/usr/src/${{ env.IMAGE_NAME }}"
+          target: "/usr/src/ieeeuoft/aws-hacks-2024"
           strip_components: 3
       - name: Bring up deployment
         env:
