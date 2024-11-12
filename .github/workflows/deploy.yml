@@ -8,7 +8,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  STACK_NAME: ieeeuoft
+  STACK_NAME: aws-hacks-fall-2024
 
 jobs:
   build:
