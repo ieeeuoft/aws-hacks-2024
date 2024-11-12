@@ -131,7 +131,7 @@ jobs:
           echo ${{ secrets.GITHUB_TOKEN }} | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
           echo "Bringing up deployment..."
           echo ${{ env.STACK_NAME}}
-          docker stack deploy --prune --with-registry-auth -c docker-compose.prod.yml ieeeuoft/aws-hacks-2024
+          docker stack deploy --prune --with-registry-auth -c docker-compose.prod.yml
           echo "Waiting for deployment..."
           sleep 30
           chmod 777 docker-stack-wait.sh
