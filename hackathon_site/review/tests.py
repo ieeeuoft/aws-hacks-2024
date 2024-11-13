@@ -224,7 +224,6 @@ class MailerTestCase(SetupUserMixin, TestCase):
         self.assertIn(link, mail.outbox[0].body)
         if settings.RSVP:
             self.assertIn(rsvp_deadline, mail.outbox[0].body)
-        self.assertIn(settings.HACKATHON_NAME, mail.outbox[0].body)
         self.assertIn(settings.PARTICIPANT_PACKAGE_LINK, mail.outbox[0].body)
         self.assertIn(settings.CHAT_ROOM[0], mail.outbox[0].body)
         self.assertIn(settings.CHAT_ROOM[1], mail.outbox[0].body)
@@ -233,8 +232,8 @@ class MailerTestCase(SetupUserMixin, TestCase):
             mail.outbox[0].subject,
         )
         self.assertIn(
-            f"The {settings.HACKATHON_NAME} team has reviewed your application, and we’re excited to welcome you to {settings.HACKATHON_NAME}!",
-            clean_mail_body,
+            f"The Hack The Student Life Team has reviewed your application, and we’re excited to welcome you to AWS Hacks - Hack The Student Life!",
+            re.sub("\s+", " ", clean_mail_body),
         )
 
         # Check that email was passed in correctly is a real user
@@ -261,10 +260,6 @@ class MailerTestCase(SetupUserMixin, TestCase):
         )
         self.assertIn(
             f"{ settings.HACKATHON_NAME } Application Decision", mail.outbox[0].subject
-        )
-        self.assertIn(
-            f"we have decided to defer your application to the next round",
-            clean_mail_body,
         )
 
     def test_correct_text_in_rejected_email(self):

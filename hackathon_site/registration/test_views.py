@@ -43,7 +43,7 @@ class SignUpViewTestCase(SetupUserMixin, TestCase):
 
     def test_valid_submit_redirect(self):
         data = {
-            "email": "testuser@email.com",
+            "email": "testuser@mail.utoronto.ca",
             "first_name": "Foo",
             "last_name": "Bar",
             "password1": "abcdef456",
@@ -57,7 +57,7 @@ class SignUpViewTestCase(SetupUserMixin, TestCase):
 
     def test_lowercases_username(self):
         data = {
-            "email": "Testuser@email.com",
+            "email": "Testuser@mail.utoronto.ca",
             "first_name": "Foo",
             "last_name": "Bar",
             "password1": "abcdef456",
@@ -67,7 +67,7 @@ class SignUpViewTestCase(SetupUserMixin, TestCase):
         self.client.post(self.view, data)
         self.assertTrue(
             User.objects.filter(
-                username="testuser@email.com", email="testuser@email.com"
+                username="testuser@mail.utoronto.ca", email="testuser@mail.utoronto.ca"
             ).exists()
         )
 
@@ -172,25 +172,32 @@ class ApplicationViewTestCase(SetupUserMixin, TestCase):
         self.view = reverse("registration:application")
 
         self.data = {
-            "birthday": date(2020, 9, 8),
+            "age": "18",
+            "pronouns": "he-him",
             "gender": "male",
-            "ethnicity": "caucasian",
-            "phone_number": "2262208655",
-            "school": "UofT",
-            "study_level": "other",
-            "graduation_year": 2020,
-            "q1": "hi",
-            "q2": "there",
-            "q3": "foo",
+            "ethnicity": "chinese",
+            "phone_number": "1234567890",
+            "country": "canada",
+            "dietary_restrictions": "halal",
+            "underrepresented_community": "no",
+            "sexual_orientation": "straight",
+            "study_level": "first-year",
+            "graduation_year": "2025",
+            "program": "computer-engineering",
+            "why_participate": "foo",
+            "what_technical_experience": "foo",
+            "discovery_method": "instagram",
+            "street_address": "Your Street Address Here",
+            "city": "Your City Here",
+            "region": "Your Region Here",
+            "postal_code": "XXXXXX",
+            "student_number": "1234567890",
             "conduct_agree": True,
-            "data_agree": True,
-            "resume": "uploads/resumes/my_resume.pdf",
         }
 
         self.team = Team.objects.create()
 
         self.post_data = self.data.copy()
-        self.post_data["birthday"] = "2000-01-01"  # The format used by the widget
         self.post_data["resume"] = SimpleUploadedFile(
             "my_resume.pdf", b"some content", content_type="application/pdf"
         )

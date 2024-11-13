@@ -4,17 +4,14 @@ A website template for hackathons run by [IEEE University of Toronto Student Bra
 
 ## IEEE Web Team 2023-2024
 #### Directors
-- Luke Cheseldine
-- Mustafa Abdulrahman (PM)
+- Mustafa Abdulrahman
+-  Thomas Lin
 
 #### Associates
 - Karandeep Lubana
-- Terry Luan
-- Dalia Mahidashti 
 - Carmen Chau
 - Samuel Liu
 - Daniel Qiu
-- Ishika Mittal
 - Kenny Cui
 - Himanish Jindal
 - Abubukker Chaudhary

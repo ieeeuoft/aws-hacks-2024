@@ -65,7 +65,8 @@ else:
     EMAIL_PORT = os.environ.get("EMAIL_PORT", None)
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", None)
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", None)
-    EMAIL_USE_SSL = True
+    EMAIL_USE_SSL = False
+    EMAIL_USE_TLS = True
     DEFAULT_FROM_EMAIL = os.environ.get(
         "EMAIL_FROM_ADDRESS", "hello@hackstudentlife.ca"
     )
@@ -317,11 +318,10 @@ DEFAULT_FROM_EMAIL = "hello@hackstudentlife.ca"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
 HSS_ADMIN_EMAIL = "hardware@hackstudentlife.ca"
 
-# TODO: CHANGE
-REGISTRATION_OPEN_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
-REGISTRATION_CLOSE_DATE = datetime(2023, 9, 30, tzinfo=TZ_INFO)
-EVENT_START_DATE = datetime(2023, 10, 10, 10, 0, 0, tzinfo=TZ_INFO)
-EVENT_END_DATE = datetime(2023, 10, 11, 17, 0, 0, tzinfo=TZ_INFO)
+REGISTRATION_OPEN_DATE = datetime(2024, 3, 1, tzinfo=TZ_INFO)
+REGISTRATION_CLOSE_DATE = datetime(2024, 3, 8, 23, 59, 0, tzinfo=TZ_INFO)
+EVENT_START_DATE = datetime(2024, 3, 22, 7, 30, 0, tzinfo=TZ_INFO)
+EVENT_END_DATE = datetime(2024, 3, 22, 18, 0, 0, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_START_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 9, 30, tzinfo=TZ_INFO)
 
@@ -330,10 +330,9 @@ MINIMUM_AGE = 18
 
 # Registration settings
 ACCOUNT_ACTIVATION_DAYS = 7
-RSVP_DAYS = 7
+RSVP_DAYS = 4
 
 # Team requirements
-# TODO: Double check
 MIN_MEMBERS = 2
 MAX_MEMBERS = 4
 
@@ -348,17 +347,32 @@ FINAL_REVIEW_RESPONSE_DATE = REGISTRATION_CLOSE_DATE + timedelta(days=7)
 # Links
 
 # TODO: CHANGE
-PARTICIPANT_PACKAGE_LINK = "#"
+PARTICIPANT_PACKAGE_LINK = (
+    "https://hackstudentlife.ca/static/event/AWS-HSL%20Participant%20Package.pdf"
+)
 
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
 
 # TODO: CHANGE
-CHAT_ROOM = ("Slack", "https://slack.com")
+CHAT_ROOM = ("Discord", "https://discord.gg/7eW9PWDR")
 
 # Enable/Disable certain Features
 TEAMS = True
 RSVP = True
+
+SIGN_IN_TIMES = [
+    {
+        "name": "sign_in",
+        "description": "Hackathon Sign In & Breakfast",
+        "time": datetime(2024, 3, 22, 8, 30, 0, tzinfo=TZ_INFO),  # Mar 22nd @ 8:30am
+    },
+    {
+        "name": "lunch1",
+        "description": "Lunch",
+        "time": datetime(2024, 3, 22, 12, 0, 0, tzinfo=TZ_INFO),  # Mar 22nd @ 12pm
+    },
+]
 
 # HSS Testing
 TEST_USER_GROUP = "HSS Test Users"
