@@ -214,7 +214,7 @@ class Application(models.Model):
                 2000, message="Enter a realistic graduation year."
             ),
             validators.MaxValueValidator(
-                2030, message="Enter a realistic graduation year."
+                2035, message="Enter a realistic graduation year."
             ),
         ],
     )
