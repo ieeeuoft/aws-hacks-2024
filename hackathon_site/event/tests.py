@@ -473,7 +473,6 @@ class DashboardTestCase(SetupUserMixin, TestCase):
             self._review(decision_sent_date=decision_sent_date)
 
             response = self.client.get(self.view)
-
             self.assertContains(response, "It appears you haven't RSVPed.")
             self.assertContains(
                 response,
@@ -611,7 +610,7 @@ class LogInViewTestCase(SetupUserMixin, TestCase):
 
     def test_submit_login_invalid_credentials(self):
         response = self.client.post(
-            self.view, {"username": "fake@email.com", "password": "abc123"}
+            self.view, {"username": "fake@mail.utoronto.ca", "password": "abc123"}
         )
         self.assertContains(response, "Please enter a correct username and password")
 
@@ -869,18 +868,27 @@ class CreateProfileSerializerTestCase(TestCase):
         self.team = RegistrationTeam.objects.create()
 
         application_data = {
-            "birthday": date(2000, 1, 1),
-            "gender": "no-answer",
-            "ethnicity": "no-answer",
+            "age": "18",
+            "pronouns": "he-him",
+            "gender": "male",
+            "ethnicity": "chinese",
             "phone_number": "1234567890",
-            "school": "UofT",
-            "study_level": "other",
-            "graduation_year": 2020,
-            "q1": "hi",
-            "q2": "there",
-            "q3": "foo",
+            "country": "canada",
+            "dietary_restrictions": "halal",
+            "underrepresented_community": "no",
+            "sexual_orientation": "straight",
+            "study_level": "first-year",
+            "graduation_year": "2025",
+            "program": "computer-engineering",
+            "why_participate": "foo",
+            "what_technical_experience": "foo",
+            "discovery_method": "instagram",
+            "street_address": "Your Street Address Here",
+            "city": "Your City Here",
+            "region": "Your Region Here",
+            "postal_code": "XXXXXX",
+            "student_number": "1234567890",
             "conduct_agree": True,
-            "data_agree": True,
             "resume": "uploads/resumes/my_resume.pdf",
         }
         self.application = Application.objects.create(

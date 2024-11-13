@@ -8,9 +8,10 @@ from django.utils.translation import gettext_lazy as _
 from django_registration import validators
 from django.conf import settings
 
-from hackathon_site.utils import is_registration_open
+from hackathon_site.utils import is_registration_open, is_hackathon_happening
 from registration.models import Application, Team, User
 from registration.widgets import MaterialFileInput
+from review.models import Review
 
 
 class SignUpForm(UserCreationForm):
@@ -35,7 +36,7 @@ class SignUpForm(UserCreationForm):
             "password2",
         ]
         labels = {
-            User.get_email_field_name(): _("Email"),
+            User.get_email_field_name(): _("UofT Email"),
             "first_name": _("First Name"),
             "last_name": _("Last Name"),
             "password1": _("Password"),
@@ -64,7 +65,45 @@ class SignUpForm(UserCreationForm):
             self.fields[field].required = True
 
     def clean_email(self):
-        return self.cleaned_data["email"].lower()
+        cleaned_email = self.cleaned_data["email"].lower()
+        if not cleaned_email.endswith("@mail.utoronto.ca"):
+            raise forms.ValidationError(
+                _("You must use your UofT email address to register."),
+                code="invalid_email",
+            )
+        return cleaned_email
+
+    def clean_first_name(self):
+        if not bool(re.search("^[a-zA-Z0-9\-]*$", self.cleaned_data["first_name"])):
+            raise forms.ValidationError(
+                _(
+                    f"This doesn't seem like a name, please enter a valid name (no special characters)"
+                ),
+                code="invalid_first_name",
+            )
+
+        if len(self.cleaned_data["first_name"]) > 30:
+            raise forms.ValidationError(
+                _(f"This input seems too long to be a name, please enter a valid name"),
+                code="first_name_too_long",
+            )
+        return self.cleaned_data["first_name"]
+
+    def clean_last_name(self):
+        if not bool(re.search("^[a-zA-Z0-9]*$", self.cleaned_data["last_name"])):
+            raise forms.ValidationError(
+                _(
+                    f"This doesn't seem like a name, please enter a valid name (no special characters)"
+                ),
+                code="invalid_last_name",
+            )
+
+        if len(self.cleaned_data["last_name"]) > 30:
+            raise forms.ValidationError(
+                _(f"This input seems too long to be a name, please enter a valid name"),
+                code="last_name_too_long",
+            )
+        return self.cleaned_data["last_name"]
 
     def save(self, commit=True):
         """
@@ -88,51 +127,56 @@ class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
         fields = [
-            "birthday",
+            "age",
             "gender",
+            "pronouns",
             "ethnicity",
+            "dietary_restrictions",
+            "specific_dietary_requirement",
+            "street_address",
+            "apt_number",
+            "country",
+            "city",
+            "region",
+            "postal_code",
+            "student_number",
             "phone_number",
-            "school",
             "study_level",
+            "program",
             "graduation_year",
             "resume",
-            "q1",
-            "q2",
-            "q3",
+            "linkedin",
+            "github",
+            "devpost",
+            "why_participate",
+            "what_technical_experience",
+            "discovery_method",
+            "underrepresented_community",
+            "sexual_orientation",
+            "resume_sharing",
             "conduct_agree",
-            "data_agree",
         ]
         widgets = {
-            "birthday": forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
-            "school": forms.Select(
-                # Choices will be populated by select2
-                attrs={"class": "select2-school-select"},
-                choices=((None, ""),),
-            ),
-            "resume": MaterialFileInput(),
-            "q1": forms.Textarea(
+            "student_number": forms.TextInput(attrs={"placeholder": "1234567890"}),
+            "graduation_year": forms.NumberInput(attrs={"placeholder": 2024}),
+            "resume": MaterialFileInput(attrs={"accept": ".pdf"}),
+            "why_participate": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "I enjoy cake",
+                    "placeholder": "I want to participate in Hack The Student Life because...",
                     "data-length": 1000,
                 }
             ),
-            "q2": forms.Textarea(
+            "what_technical_experience": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "Cake is wonderful",
+                    "placeholder": "My technical experience includes...",
                     "data-length": 1000,
                 }
             ),
-            "q3": forms.Textarea(
-                attrs={
-                    "class": "materialize-textarea",
-                    "placeholder": "I could really go for cake right now",
-                    "data-length": 1000,
-                }
-            ),
+            # Additional widgets can be defined here for other fields as needed.
             "phone_number": forms.TextInput(attrs={"placeholder": "+1 (123) 456-7890"}),
-            "graduation_year": forms.NumberInput(attrs={"placeholder": 2020}),
+            "graduation_year": forms.NumberInput(attrs={"placeholder": 2024}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -140,7 +184,6 @@ class ApplicationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.label_suffix = ""
         self.fields["conduct_agree"].required = True
-        self.fields["data_agree"].required = True
 
     def clean(self):
         if not is_registration_open():
@@ -155,17 +198,24 @@ class ApplicationForm(forms.ModelForm):
             )
         return cleaned_data
 
-    def clean_birthday(self):
-        latest_birthday = (
-            settings.EVENT_START_DATE - relativedelta(years=settings.MINIMUM_AGE)
-        ).date()
-        user_birthday = self.cleaned_data["birthday"]
-        if user_birthday > latest_birthday:
+    def clean_student_number(self):
+        student_number = self.cleaned_data.get("student_number")
+        if not student_number.isdigit() or len(student_number) != 10:
+            raise forms.ValidationError("Student number must be exactly 10 digits.")
+        return student_number
+
+    # Include any other custom validation methods as necessary.
+    def clean_age(self):
+        user_age = self.cleaned_data["age"]
+        # Check if the age is "22+"
+        if user_age == "22+":
+            return user_age
+        if int(user_age) < settings.MINIMUM_AGE:
             raise forms.ValidationError(
                 _(f"You must be {settings.MINIMUM_AGE} to participate."),
                 code="user_is_too_young_to_participate",
             )
-        return self.cleaned_data["birthday"]
+        return user_age
 
     def save(self, commit=True):
         self.instance = super().save(commit=False)
@@ -211,3 +261,53 @@ class JoinTeamForm(forms.Form):
             raise forms.ValidationError(_(f"Team {team_code} is full."))
 
         return team_code
+
+
+class SignInForm(forms.Form):
+    email = forms.EmailField()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.label_suffix = ""
+        self.error_css_class = "invalid"
+
+    def clean(self):
+        if not is_hackathon_happening():
+            raise forms.ValidationError(
+                _("You cannot sign in outside of the hackathon period."),
+                code="invalid_sign_in_time",
+            )
+
+        return super().clean()
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+
+        try:
+            user = User.objects.get(email__exact=email)
+            application = Application.objects.get(user__exact=user)
+            try:
+                review = Review.objects.get(application__exact=application)
+            except Review.DoesNotExist:
+                raise forms.ValidationError(_(f"User {email} was not reviewed."))
+            if review.status == "Accepted":
+                if settings.RSVP and application.rsvp is None:
+                    raise forms.ValidationError(
+                        _(f"User {email} has not RSVP'd to the hackathon")
+                    )
+            else:
+                raise forms.ValidationError(
+                    _(
+                        f"User {email} has not been Accepted to attend {settings.HACKATHON_NAME}"
+                    )
+                )
+        except User.DoesNotExist:
+            raise forms.ValidationError(_(f"User {email} does not exist."))
+        except Application.DoesNotExist:
+            raise forms.ValidationError(
+                _(f"User {email} has not applied to {settings.HACKATHON_NAME}")
+            )
+        except Exception as e:
+            raise e
+
+        return email

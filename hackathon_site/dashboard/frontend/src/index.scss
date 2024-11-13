@@ -37,7 +37,7 @@ code {
 
 h1,
 .MuiTypography-h1 {
-    font-size: size(xl);
+    font-size: size(lg);
     font-weight: bold;
     text-align: center;
     @include responsive(md-down) {
