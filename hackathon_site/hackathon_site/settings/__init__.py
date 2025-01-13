@@ -318,10 +318,10 @@ DEFAULT_FROM_EMAIL = "hello@hackstudentlife.ca"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
 HSS_ADMIN_EMAIL = "hardware@hackstudentlife.ca"
 
-REGISTRATION_OPEN_DATE = datetime(2024, 11, 12, tzinfo=TZ_INFO)
-REGISTRATION_CLOSE_DATE = datetime(2024, 11, 19, 23, 59, 0, tzinfo=TZ_INFO)
-EVENT_START_DATE = datetime(2024, 11, 29, 7, 30, 0, tzinfo=TZ_INFO)
-EVENT_END_DATE = datetime(2024, 11, 29, 18, 0, 0, tzinfo=TZ_INFO)
+REGISTRATION_OPEN_DATE = datetime(2025, 01, 10, tzinfo=TZ_INFO)
+REGISTRATION_CLOSE_DATE = datetime(2025, 01, 19, 23, 59, 0, tzinfo=TZ_INFO)
+EVENT_START_DATE = datetime(2025, 11, 29, 7, 30, 0, tzinfo=TZ_INFO)
+EVENT_END_DATE = datetime(2025, 11, 29, 18, 0, 0, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_START_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 9, 30, tzinfo=TZ_INFO)
 
